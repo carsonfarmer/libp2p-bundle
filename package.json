@@ -40,7 +40,6 @@
     "mocha": "^8.2.1",
     "nyc": "^15.1.0",
     "prettier": "^2.2.1",
-    "typedoc": "^0.20.16",
     "typescript": "^4.1.3"
   },
   "dependencies": {
@@ -80,7 +79,7 @@
       "prettier"
     ],
     "ignorePatterns": [
-      "dist/**",
+      "types/**",
       "**/*.[j|t]s.map"
     ],
     "rules": {

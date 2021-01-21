@@ -1,7 +1,6 @@
-# nullify-libp2p-bundle
+# libp2p-bundle
 
-[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
-TODO: Put more badges here.
+[![standard-readme](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 > Basic libp2p bundle with settings that match js-ipfs.
 
@@ -89,7 +88,9 @@ const create = async ({
 }
 ```
 
-With reasonable defaults for all named options. Usually, you'll only need to follow the usage pattern outlined above. Another common usage pattern is to specify a peerId directly.
+The config has defaults for all named options. Usually, you'll only need to
+follow the usage pattern outlined above. Another common usage pattern is to
+specify a peerId directly.
 
 ```javascript
 import PeerId from "peer-id";
