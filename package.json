@@ -1,6 +1,6 @@
 {
   "name": "@nullify/libp2p-bundle",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Basic libp2p bundle with settings that match js-ipfs",
   "main": "src/index.js",
   "types": "types/index.d.ts",
