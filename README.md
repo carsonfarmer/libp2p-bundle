@@ -57,7 +57,7 @@ run();
 
 ## API
 
-### `create(config): Promise<import('libp2p')>`
+### `create(options): Promise<import('libp2p')>`
 
 ```javascript
 /**
@@ -67,22 +67,26 @@ run();
  */
 
 /**
- * @param {Object} config
- * @param {{ config?: any}} [config.options]
- * @param {import('peer-id')} [config.peerId]
- * @param {string[]} [config.multiaddrs]
- * @param {Repo} [config.repo]
- * @param {{ pass?: string }} [config.keychainConfig]
- * @param {import('libp2p').Libp2pConfig} [config.config]
+ * @typedef {Object} Options
+ * @property {any} [config]
+ * @property {import('peer-id')} [peerId]
+ * @property {string[]} [multiaddrs]
+ * @property {Repo} [repo]
+ * @property {{ pass?: string }} [keychainConfig]
+ * @property {import('libp2p').Libp2pConfig} options
+ */
+
+/**
+ * @param {Options} options
  * @returns {Promise<import('libp2p')>}
  */
 const create = async ({
-  options,
+  config,
   peerId,
   multiaddrs,
   repo,
   keychainConfig,
-  config,
+  options,
 }) => {
   ...
 }
@@ -103,6 +107,36 @@ PeerId.create().then((peerId) => {
     node.start().then(() => console.log("node started"));
   });
 });
+```
+
+_Unlike_ a default IPFS peer, `libp2p-bundle` defaults to using an in-memory
+"repo" for the datastore and keystore. If you want to specify a custom setup
+(or mimic the IPFS settings), you an simply provide your own datastore-
+compliant storage config:
+
+```javascript
+import LevelStore from "datastore-level";
+import { mkdirSync, existsSync } from "fs";
+import { join } from "path";
+import create from "@nullify/libp2p-bundle";
+
+// Create a persistent on-disk repo for Nodejs demo
+const createRepo = (base) => {
+  if (!existsSync(base)) {
+    mkdirSync(base);
+  }
+  return {
+    datastore: new LevelStore(join(base, "datastore")),
+    keys: new LevelStore(join(base, "keys")),
+  };
+};
+
+create({
+  repo: createRepo("./libp2p"),
+}).then((node) => {
+  node.start().then(() => console.log("node started"));
+});
+...
 ```
 
 ## Maintainers

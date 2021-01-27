@@ -5,7 +5,6 @@
 const PeerId = require("peer-id");
 const libp2p = require("./components/libp2p");
 const defaultConfig = require("./runtime/config-nodejs");
-const createRepo = require("./runtime/repo-nodejs");
 
 /**
  * @typedef {Object} Repo
@@ -14,21 +13,23 @@ const createRepo = require("./runtime/repo-nodejs");
  */
 
 /**
- * @param {Object} config
- * @param {{ config?: any}} [config.options]
- * @param {import('peer-id')} [config.peerId]
- * @param {string[]} [config.multiaddrs]
- * @param {Repo} [config.repo]
- * @param {{ pass?: string }} [config.keychainConfig]
- * @param {import('libp2p').Libp2pConfig} [config.config]
+ * @typedef {Object} Options
+ * @property {any} [options]
+ * @property {import('peer-id')} [peerId]
+ * @property {string[]} [multiaddrs]
+ * @property {Repo} [repo]
+ * @property {{ pass?: string }} [keychainConfig]
+ * @property {import('libp2p').Libp2pConfig} [config]
+ */
+
+/**
+ * @param {Options} options
  * @returns {Promise<import('libp2p')>}
  */
 module.exports = async ({
-  options = {
-    config: defaultConfig(),
-  },
+  options = defaultConfig(),
   peerId,
-  multiaddrs = options.config.Addresses.Swarm || [],
+  multiaddrs = [],
   repo,
   keychainConfig = {},
   config = {},
@@ -36,8 +37,17 @@ module.exports = async ({
   if (peerId === undefined) {
     peerId = await PeerId.create();
   }
-  if (!repo) {
-    repo = createRepo(".libp2p");
+  options.config = options.config || options;
+  if (multiaddrs.length === 0 && options.config) {
+    multiaddrs = options.config.Addresses ? options.config.Addresses.Swarm : [];
   }
-  return libp2p({ options, peerId, multiaddrs, config, repo, keychainConfig });
+  return libp2p({
+    options,
+    peerId,
+    multiaddrs,
+    config,
+    // @ts-ignore
+    repo,
+    keychainConfig,
+  });
 };
