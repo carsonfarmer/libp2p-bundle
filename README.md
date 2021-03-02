@@ -6,7 +6,7 @@
 
 This package provides a zero-config setup to make it easy to include a fully-
 configured libp2p host in any application. It is almost directly copied from
-js-ipfs, so you can be confident the settings are compatible. It alow allows
+js-ipfs, so you can be confident the settings are compatible. It also allows
 more nuanced access to the underlying libp2p settings.
 
 ## Table of Contents
