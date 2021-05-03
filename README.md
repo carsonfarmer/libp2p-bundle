@@ -30,26 +30,26 @@ npm i @nullify/libp2p-bundle
 import create from "@nullify/libp2p-bundle";
 
 const run = async () => {
-  const node = await create({
-    multiaddrs: ["/ip4/0.0.0.0/tcp/4007", "/ip4/0.0.0.0/tcp/4008/ws"],
-  });
+const node = await create({
+multiaddrs: ["/ip4/0.0.0.0/tcp/4007", "/ip4/0.0.0.0/tcp/4008/ws"],
+});
 
-  const p = new Promise((resolve) => {
-    // Promise resolves on first discovered peer
-    node.on("peer:discovery", (peerId) => {
-      resolve(peerId);
-    });
-  });
+const p = new Promise((resolve) => {
+// Promise resolves on first discovered peer
+node.on("peer:discovery", (peerId) => {
+resolve(peerId);
+});
+});
 
-  await node.start();
+await node.start();
 
-  const listenAddrs = node.transportManager.getAddrs();
-  console.log("listening on: ", listenAddrs);
+const listenAddrs = node.transportManager.getAddrs();
+console.log("listening on: ", listenAddrs);
 
-  const peerId = await p;
-  console.log(`Discovered: ${peerId.toB58String()}`);
-  await node.stop();
-  process.exit();
+const peerId = await p;
+console.log(`Discovered: ${peerId.toB58String()}`);
+await node.stop();
+process.exit();
 };
 
 run();
@@ -57,87 +57,99 @@ run();
 
 ## API
 
-### `create(options): Promise<import('libp2p')>`
+## Functions
 
-```javascript
-/**
- * @typedef {Object} Repo
- * @property {import('interface-datastore').Datastore} [datastore]
- * @property {import('interface-datastore').Datastore} [keys]
- */
+<dl>
+<dt><a href="#create">create(options)</a> ⇒ <code><a href="#Libp2p">Promise.&lt;Libp2p&gt;</a></code></dt>
+<dd></dd>
+</dl>
 
-/**
- * @typedef {Object} Options
- * @property {any} [config]
- * @property {import('peer-id')} [peerId]
- * @property {string[]} [multiaddrs]
- * @property {Repo} [repo]
- * @property {{ pass?: string }} [keychainConfig]
- * @property {import('libp2p').Libp2pConfig} options
- */
+## Typedefs
 
-/**
- * @param {Options} options
- * @returns {Promise<import('libp2p')>}
- */
-const create = async ({
-  config,
-  peerId,
-  multiaddrs,
-  repo,
-  keychainConfig,
-  options,
-}) => {
-  ...
-}
-```
+<dl>
+<dt><a href="#Repo">Repo</a> : <code>object</code></dt>
+<dd></dd>
+<dt><a href="#Libp2pConfig">Libp2pConfig</a> : <code>module:libp2p~Libp2pConfig</code></dt>
+<dd></dd>
+<dt><a href="#Libp2p">Libp2p</a> : <code>module:libp2p</code></dt>
+<dd></dd>
+<dt><a href="#Options">Options</a> : <code>object</code></dt>
+<dd></dd>
+</dl>
 
-The config has defaults for all named options. Usually, you'll only need to
-follow the usage pattern outlined above. Another common usage pattern is to
-specify a peerId directly.
+<a name="create"></a>
 
-```javascript
-import PeerId from "peer-id";
-import create from "@nullify/libp2p-bundle";
+## create(options) ⇒ [<code>Promise.&lt;Libp2p&gt;</code>](#Libp2p)
+**Kind**: global function  
+**Returns**: [<code>Promise.&lt;Libp2p&gt;</code>](#Libp2p) - <p>A properly configured libp2p host.</p>  
+<table>
+  <thead>
+    <tr>
+      <th>Param</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>options</td><td><code><a href="#Options">Options</a></code></td><td><p>The set of options to control bundle creation.</p></td>
+    </tr>  </tbody>
+</table>
 
-PeerId.create().then((peerId) => {
-  create({
-    peerId,
-  }).then((node) => {
-    node.start().then(() => console.log("node started"));
-  });
-});
-```
+<a name="Repo"></a>
 
-_Unlike_ a default IPFS peer, `libp2p-bundle` defaults to using an in-memory
-"repo" for the datastore and keystore. If you want to specify a custom setup
-(or mimic the IPFS settings), you an simply provide your own datastore-
-compliant storage config:
+## Repo : <code>object</code>
+**Kind**: global typedef  
+**Properties**
 
-```javascript
-import LevelStore from "datastore-level";
-import { mkdirSync, existsSync } from "fs";
-import { join } from "path";
-import create from "@nullify/libp2p-bundle";
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>[datastore]</td><td><code>module:interface-datastore~Datastore</code></td><td><p>Input datastore.</p></td>
+    </tr><tr>
+    <td>[keys]</td><td><code>module:interface-datastore~Datastore</code></td><td><p>Input keystore</p></td>
+    </tr>  </tbody>
+</table>
 
-// Create a persistent on-disk repo for Nodejs demo
-const createRepo = (base) => {
-  if (!existsSync(base)) {
-    mkdirSync(base);
-  }
-  return {
-    datastore: new LevelStore(join(base, "datastore")),
-    keys: new LevelStore(join(base, "keys")),
-  };
-};
+<a name="Libp2pConfig"></a>
 
-create({
-  repo: createRepo("./libp2p"),
-}).then((node) => {
-  node.start().then(() => console.log("node started"));
-});
-...
-```
+## Libp2pConfig : <code>module:libp2p~Libp2pConfig</code>
+**Kind**: global typedef  
+<a name="Libp2p"></a>
+
+## Libp2p : <code>module:libp2p</code>
+**Kind**: global typedef  
+<a name="Options"></a>
+
+## Options : <code>object</code>
+**Kind**: global typedef  
+**Properties**
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th><th>Type</th><th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+<tr>
+    <td>[options]</td><td><code>any</code></td><td><p>IPFS options.</p></td>
+    </tr><tr>
+    <td>[peerId]</td><td><code>PeerId</code></td><td><p>Input PeerID object.</p></td>
+    </tr><tr>
+    <td>[multiaddrs]</td><td><code>Array.&lt;string&gt;</code></td><td><p>Set of multiaddrs to listen on.</p></td>
+    </tr><tr>
+    <td>[repo]</td><td><code><a href="#Repo">Repo</a></code></td><td><p>Input repo config.</p></td>
+    </tr><tr>
+    <td>[keychainConfig]</td><td><code>Object</code></td><td><p>Input keychain config.</p></td>
+    </tr><tr>
+    <td>[config]</td><td><code><a href="#Libp2pConfig">Libp2pConfig</a></code></td><td><p>Libp2p options.</p></td>
+    </tr>  </tbody>
+</table>
+
 
 ## Maintainers
 
@@ -147,7 +159,8 @@ create({
 
 PRs accepted.
 
-Small note: If editing the README, please conform to the [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
+Small note: If editing the README, please conform to the
+[standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
 ## License
 

@@ -7,31 +7,39 @@ const libp2p = require("./components/libp2p");
 const defaultConfig = require("./runtime/config-nodejs");
 
 /**
- * @typedef {Object} Repo
- * @property {import('interface-datastore').Datastore} [datastore]
- * @property {import('interface-datastore').Datastore} [keys]
+ * @typedef {object} Repo
+ * @property {import("interface-datastore").Datastore} [datastore] Input datastore.
+ * @property {import("interface-datastore").Datastore} [keys] Input keystore
  */
 
 /**
- * @typedef {Object} Options
- * @property {any} [options]
- * @property {import('peer-id')} [peerId]
- * @property {string[]} [multiaddrs]
- * @property {Repo} [repo]
- * @property {{ pass?: string }} [keychainConfig]
- * @property {import('libp2p').Libp2pConfig} [config]
+ * @typedef {import("libp2p").Libp2pConfig} Libp2pConfig
  */
 
 /**
- * @param {Options} options
- * @returns {Promise<import('libp2p')>}
+ * @typedef {import("libp2p")} Libp2p
  */
-module.exports = async ({
+
+/**
+ * @typedef {object} Options
+ * @property {any} [options] IPFS options.
+ * @property {PeerId} [peerId] Input PeerID object.
+ * @property {string[]} [multiaddrs] Set of multiaddrs to listen on.
+ * @property {Repo} [repo] Input repo config.
+ * @property {{pass: string}} [keychainConfig] Input keychain config.
+ * @property {Libp2pConfig} [config] Libp2p options.
+ */
+
+/**
+ * @param {Options} options The set of options to control bundle creation.
+ * @returns {Promise<Libp2p>} A properly configured libp2p host.
+ */
+const create = async ({
   options = defaultConfig(),
   peerId,
   multiaddrs = [],
-  repo,
-  keychainConfig = {},
+  repo = {},
+  keychainConfig,
   config = {},
 } = {}) => {
   if (peerId === undefined) {
@@ -46,8 +54,9 @@ module.exports = async ({
     peerId,
     multiaddrs,
     config,
-    // @ts-ignore
     repo,
     keychainConfig,
   });
 };
+
+module.exports = create;
