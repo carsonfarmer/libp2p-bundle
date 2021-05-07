@@ -1,16 +1,18 @@
 # libp2p-bundle
 
-[![standard-readme](https://img.shields.io/badge/standard--readme-OK-green.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
+[![GitHub license](https://img.shields.io/github/license/carsonfarmer/libp2p-bundle.svg)](./LICENSE)
+[![GitHub package.json version](https://img.shields.io/github/package-json/v/carsonfarmer/libp2p-bundle.svg)](./package.json)
+[![npm (scoped)](https://img.shields.io/npm/v/@nullify/libp2p-bundle.svg)](https://www.npmjs.com/package/@nullify/libp2p-bundle)
+[![Release](https://img.shields.io/github/release/carsonfarmer/libp2p-bundle.svg)](https://github.com/carsonfarmer/libp2p-bundle/releases/latest)
+[![standard-readme compliant](https://img.shields.io/badge/standard--readme-OK-green.svg)](https://github.com/RichardLitt/standard-readme)
+
+![Tests](https://github.com/carsonfarmer/libp2p-bundle/workflows/Test/badge.svg)
 
 > Basic libp2p bundle with settings that match js-ipfs.
 
-This package provides a zero-config setup to make it easy to include a fully-
-configured libp2p host in any application. It is almost directly copied from
-js-ipfs, so you can be confident the settings are compatible. It also allows
-more nuanced access to the underlying libp2p settings.
+# Table of Contents
 
-## Table of Contents
-
+- [Background](#background)
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
@@ -18,44 +20,48 @@ more nuanced access to the underlying libp2p settings.
 - [Contributing](#contributing)
 - [License](#license)
 
-## Install
+# Background
+
+This package provides a zero-config setup to make it easy to include a fully-configured libp2p host in any application. It is almost directly copied from js-ipfs, so you can be confident the settings are compatible. It also allows more nuanced access to the underlying libp2p settings.
+
+# Install
 
 ```bash
 npm i @nullify/libp2p-bundle
 ```
 
-## Usage
+# Usage
 
 ```javascript
 import create from "@nullify/libp2p-bundle";
 
 const run = async () => {
-const node = await create({
-multiaddrs: ["/ip4/0.0.0.0/tcp/4007", "/ip4/0.0.0.0/tcp/4008/ws"],
-});
+  const node = await create({
+    multiaddrs: ["/ip4/0.0.0.0/tcp/4007", "/ip4/0.0.0.0/tcp/4008/ws"],
+  });
 
-const p = new Promise((resolve) => {
-// Promise resolves on first discovered peer
-node.on("peer:discovery", (peerId) => {
-resolve(peerId);
-});
-});
+  const p = new Promise((resolve) => {
+    // Promise resolves on first discovered peer
+    node.on("peer:discovery", (peerId) => {
+      resolve(peerId);
+    });
+  });
 
-await node.start();
+  await node.start();
 
-const listenAddrs = node.transportManager.getAddrs();
-console.log("listening on: ", listenAddrs);
+  const listenAddrs = node.transportManager.getAddrs();
+  console.log("listening on: ", listenAddrs);
 
-const peerId = await p;
-console.log(`Discovered: ${peerId.toB58String()}`);
-await node.stop();
-process.exit();
+  const peerId = await p;
+  console.log(`Discovered: ${peerId.toB58String()}`);
+  await node.stop();
+  process.exit();
 };
 
 run();
 ```
 
-## API
+# API
 
 ## Functions
 
@@ -80,8 +86,10 @@ run();
 <a name="create"></a>
 
 ## create(options) ⇒ [<code>Promise.&lt;Libp2p&gt;</code>](#Libp2p)
+
 **Kind**: global function  
-**Returns**: [<code>Promise.&lt;Libp2p&gt;</code>](#Libp2p) - <p>A properly configured libp2p host.</p>  
+**Returns**: [<code>Promise.&lt;Libp2p&gt;</code>](#Libp2p) - <p>A properly configured libp2p host.</p>
+
 <table>
   <thead>
     <tr>
@@ -97,6 +105,7 @@ run();
 <a name="Repo"></a>
 
 ## Repo : <code>object</code>
+
 **Kind**: global typedef  
 **Properties**
 
@@ -117,14 +126,17 @@ run();
 <a name="Libp2pConfig"></a>
 
 ## Libp2pConfig : <code>module:libp2p~Libp2pConfig</code>
+
 **Kind**: global typedef  
 <a name="Libp2p"></a>
 
 ## Libp2p : <code>module:libp2p</code>
+
 **Kind**: global typedef  
 <a name="Options"></a>
 
 ## Options : <code>object</code>
+
 **Kind**: global typedef  
 **Properties**
 
@@ -150,18 +162,17 @@ run();
     </tr>  </tbody>
 </table>
 
-
-## Maintainers
+# Maintainers
 
 [@carsonfarmer](https://github.com/carsonfarmer)
 
-## Contributing
+# Contributing
 
 PRs accepted.
 
 Small note: If editing the README, please conform to the
 [standard-readme](https://github.com/RichardLitt/standard-readme) specification.
 
-## License
+# License
 
 MIT © 2021 Carson Farmer
