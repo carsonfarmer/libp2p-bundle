@@ -1,6 +1,8 @@
-types
-node_modules
-.vscode
-.nyc_output
 coverage
+dist
+node_modules
+tsconfig.tsbuildinfo
+.DS_Store
+.nyc_output
+.vscode
 .libp2p
