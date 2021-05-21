@@ -1,44 +1,40 @@
 ---
-name: Bug Report
+name: Bug report
 about: Create a report to help us improve
-title: "bug: "
+title: ""
 labels: ""
 assignees: ""
 ---
 
-<!-- Before submitting an issue, please see https://guides.github.com/features/issues/. -->
+**Describe the bug**
+A clear and concise description of what the bug is.
 
-<!-- Please do not submit support requests or "How to" questions here. -->
+**To Reproduce**
+Steps to reproduce the behavior:
 
-<!-- ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION. -->
+1. Go to '...'
+2. Click on '....'
+3. Scroll down to '....'
+4. See error
 
-# Bug Report
+**Expected behavior**
+A clear and concise description of what you expected to happen.
 
-**npm package version**
+**Screenshots**
+If applicable, add screenshots to help explain your problem.
 
-e.g., 0.0.1
+**Desktop (please complete the following information):**
 
-**Current behavior:**
+- OS: [e.g. iOS]
+- Browser [e.g. chrome, safari]
+- Version [e.g. 22]
 
-<!-- Describe how the bug manifests. -->
+**Smartphone (please complete the following information):**
 
-**Expected behavior:**
+- Device: [e.g. iPhone6]
+- OS: [e.g. iOS8.1]
+- Browser [e.g. stock browser, safari]
+- Version [e.g. 22]
 
-<!-- Describe what the behavior would be without the bug. -->
-
-**Steps to reproduce:**
-
-<!--  Please explain the steps required to duplicate the issue, especially if you are able to provide a sample application. -->
-
-**Related code:**
-
-<!-- If you are able to illustrate the bug or feature request with an example, please provide a code sample.
--->
-
-```
-insert short code snippets here
-```
-
-**Additional Context**
-
-<!-- List any other information that is relevant to your issue. Stack traces, related issues, suggestions on how to add, use case, Stack Overflow links, forum links, screenshots, OS if applicable, etc. -->
+**Additional context**
+Add any other context about the problem here.

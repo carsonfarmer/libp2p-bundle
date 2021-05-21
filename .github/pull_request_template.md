@@ -1,49 +1,66 @@
-## Pull request checklist
+<!--------------------------------------------------------------------------
+👉 STEP 1: Welcome! Thanks for taking the time to submit a pull request!
+     Even if you're a seasoned developer, this PR etiquette gist is always a
+     good read: https://gist.github.com/mikepea/863f63d6e37281e329f8
+--------------------------------------------------------------------------->
 
-Please check if your PR fulfills the following requirements:
+<!--------------------------------------------------------------------------
+👉 STEP 2: We thoughtfully review both implementation AND feature design.
+     If you are making a nontrivial change, it's recommended to first create
+     a GitHub issue and get feedback on your proposed design.
+--------------------------------------------------------------------------->
 
-- [ ] Tests for the changes have been added (for bug fixes / features)
-- [ ] Docs have been reviewed and added / updated if needed (for bug fixes / features)
-- [ ] Build (`npm run types`) was run locally and any changes were pushed
-- [ ] Lint (`npm run lint`) has passed locally and any fixes were made for failures
+<!--------------------------------------------------------------------------
+👉 STEP 3: Write a concise but specific PR title in the box above.
+     Prefix your PR with its type.
+     For example, if your PR fixes docs then your GitHub title might look like:
 
-## Pull request type
+     "[docs] Add reference to cool new feature"
+--------------------------------------------------------------------------->
 
-<!-- Please do not submit updates to dependencies unless it fixes an issue. -->
+## Summary
 
-<!-- Please try to limit your pull request to one type, submit multiple pull requests if needed. -->
+<!--------------------------------------------------------------------------
+👉 STEP 4:  In a few sentences, write a summary explaining:
 
-Please check the type of change your PR introduces:
+     From the perspective of an end user, what problem are you solving?
+     What did you change?
 
-- [ ] Bugfix
-- [ ] Feature
-- [ ] Code style update (formatting, renaming)
-- [ ] Refactoring (no functional changes, no api changes)
-- [ ] Build related changes
-- [ ] Documentation content changes
-- [ ] Other (please describe):
+     You can add the magic phrase "Fixes #1234" to automatically close
+     issue #1234 when your PR is merged.
+--------------------------------------------------------------------------->
 
-## What is the current behavior?
+## Details
 
-<!-- Please describe the current behavior that you are modifying, or link to a relevant issue. -->
+<!--------------------------------------------------------------------------
+👉 STEP 5: Provide additional details about your fix:
 
-Issue Number: N/A
+     How did you solve the problem?
+     Mention any alternate approaches you considered.
+     Did you completely solve the problem, or are some cases not handled yet?
+     Does this change break backwards compatibility?
+     Could any aspects of your change impact performance?
+--------------------------------------------------------------------------->
 
-## What is the new behavior?
+## How it was tested
 
-<!-- Please describe the behavior or changes that are being added by this PR. -->
+<!--------------------------------------------------------------------------
+👉 STEP 6: What test cases did you use to validate your work?
+     Given the complexities of how build tools interact with the OS, we only
+     require unit tests for algorithmic code (e.g. parsing a string, sorting a list).
+--------------------------------------------------------------------------->
 
--
--
--
+<!--------------------------------------------------------------------------
+👉 STEP 8: Do the checklist!
+--------------------------------------------------------------------------->
 
-## Does this introduce a breaking change?
+## Checklist:
 
-- [ ] Yes
-- [ ] No
-
-<!-- If this introduces a breaking change, please describe the impact and migration path for existing applications below. -->
-
-## Other information
-
-<!-- Any other information that is important to this PR. -->
+- [ ] My code follows the style guidelines of this project
+- [ ] I have performed a self-review of my own code
+- [ ] I have commented my code, particularly in hard-to-understand areas
+- [ ] I have made corresponding changes to the documentation
+- [ ] My changes generate no new warnings
+- [ ] I have added tests that prove my fix is effective or that my feature works
+- [ ] New and existing unit tests pass locally with my changes
+- [ ] Any dependent changes have been merged and published in downstream modules

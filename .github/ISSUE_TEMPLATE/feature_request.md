@@ -1,44 +1,19 @@
 ---
-name: Feature Request
+name: Feature request
 about: Suggest an idea for this project
-title: "feat: "
+title: ""
 labels: ""
 assignees: ""
 ---
 
-<!-- Before submitting an issue, please see https://guides.github.com/features/issues/. -->
+**Is your feature request related to a problem? Please describe.**
+A clear and concise description of what the problem is. Ex. I'm always frustrated when [...]
 
-<!-- Please do not submit support requests or "How to" questions here. -->
+**Describe the solution you'd like**
+A clear and concise description of what you want to happen.
 
-<!-- ISSUES MISSING IMPORTANT INFORMATION MAY BE CLOSED WITHOUT INVESTIGATION. -->
+**Describe alternatives you've considered**
+A clear and concise description of any alternative solutions or features you've considered.
 
-# Feature Request
-
-**npm package version**
-
-e.g., 0.0.1
-
-**Describe the Feature Request**
-
-<!-- A clear and concise description of what the feature request is. Please include if your feature request is related to a problem. -->
-
-**Describe Preferred Solution**
-
-<!-- A clear and concise description of what you want to happen. -->
-
-**Describe Alternatives**
-
-<!-- A clear and concise description of any alternative solutions or features you've considered. -->
-
-**Related code:**
-
-<!-- If you are able to illustrate the bug or feature request with an example, please provide a code sample.
--->
-
-```
-insert short code snippets here
-```
-
-**Additional Context**
-
-<!-- List any other information that is relevant to your issue. Stack traces, related issues, suggestions on how to add, use case, Stack Overflow links, forum links, screenshots, OS if applicable, etc. -->
+**Additional context**
+Add any other context or screenshots about the feature request here.
