@@ -19,7 +19,7 @@ module.exports = ({
   options = {},
   peerId,
   multiaddrs = [],
-  repo,
+  repo = {},
   keychainConfig = {},
   config = {},
 }) => {
